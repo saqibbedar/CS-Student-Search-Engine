@@ -1,54 +1,34 @@
-const dataContainer = document.querySelector("[data-container]");
-let input = document.getElementById("input");
+# CS-Student-Search-Engine
 
-let students = [];
+The `CS-Student-Search-Engine` repository is a project that contains a search tool specifically designed for Computer Science students. This tool allows users to search through JSON data, which contains information about my classmates. The main functionality of this tool is to provide an efficient and user-friendly way to search. 
 
-input.addEventListener('input', (e) => {
-    const inputValue = e.target.value.toLowerCase();
-    students.forEach((student) => {
-        const isVisible = student.Id.toLowerCase().includes(inputValue) || student.name.toLowerCase().includes(inputValue);
-        student.Element.classList.toggle("hide", !isVisible);
-    });
-});
+# Demo
 
-const fetchData = async () => {
-    try {
-        const response = await fetch("data.json");
-        if (!response.ok) {
-            throw new Error("Could not locate the resources.");
-        }
-        const data = await response.json();
+For more, check out live demo [here →](https://saqibbedar.github.io/custom-video-player/).
 
-        students = data.map((studentData) => {
-            const cloneStudent = document.querySelector(".students").cloneNode(true);
-            cloneStudent.classList.remove("hide");
-            const header = cloneStudent.querySelector(".id");
-            const body = cloneStudent.querySelector(".name");
+## Getting Started
 
-            header.textContent = studentData.Id;
-            body.textContent = studentData.StudentName; // Corrected from studentData.name
+To get started with this project, simply clone this repository:
 
-            dataContainer.append(cloneStudent);
+```md 
+git clone https://github.com/saqibbedar/CS-Student-Search-Engine.git
+```
 
-            return { Id: studentData.Id, name: studentData.StudentName, Element: cloneStudent };
-        });
-    } catch (error) {
-        console.error(error);
-    }
-}
+2. Navigate to the project directory.
 
-fetchData();
+3. Open the `index.html` file in your browser to view the search engine tool.
 
+## Support Me
+I am computer science student and I do share these types of projects here on github for free. All of my github code is licensed under `MIT License`. It takes me a great time to create these types of projects so, I am pretty sure! you would support me for the efforts I am putting. Thanks in advance for your support.
 
+<a href="https://www.buymeacoffee.com/saqibbedar"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=saqibbedar&button_colour=5F7FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00"></a>
 
-let button = document.querySelector(".btn");
+## Contributing 😍
 
-button.addEventListener("click", (e)=>{
-    e.stopPropagation();
-    input.classList.add("input-active");
-})
+Contributions are welcome! Please feel free to submit a pull request.
 
-dataContainer.addEventListener("click", ()=>{
-    input.classList.remove("input-active")
-})
+## License
 
+This project is licensed under the MIT License.
+
+Happy Coding 🚀
